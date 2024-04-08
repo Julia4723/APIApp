@@ -125,13 +125,12 @@ extension MainViewController {
             
             let decoder = JSONDecoder()
             
-            do{
+            do {
                 let something = try decoder.decode(Something.self, from: data)
                 print(something)
             } catch let error {
                 print(error)
             }
-            
             
         }.resume()
     }
@@ -145,7 +144,7 @@ extension MainViewController {
             
             let decoder = JSONDecoder()
             
-            do{
+            do {
                 let game = try decoder.decode(Game.self, from: data)
                 print(game)
             } catch let error {
