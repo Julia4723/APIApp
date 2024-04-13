@@ -58,9 +58,9 @@ final class MainViewController: UICollectionViewController {
     private let userActions = UserAction.allCases //Массив с кейсами перечислений
     
     
-    //MARK: UICollectionViewDataSource
+    //MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        userActions.count //Возврвщвем количество значений массива
+        userActions.count //Возвращаем количество значений массива
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -73,7 +73,7 @@ final class MainViewController: UICollectionViewController {
     }
     
     
-    //MARK: UICollectionViewDelegate
+    //MARK: - UICollectionViewDelegate
     // Этот метод вызывается когда нажимаем по ячейке и метод принимает индекс ячейки и зная индекс ячейки можем извлечь из массива соответствующий кейс
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let userAction = userActions[indexPath.item] // вызываем индекс текущей ячейки
@@ -92,8 +92,21 @@ final class MainViewController: UICollectionViewController {
             fetchNextTwo()
         }
     }
+    
+    
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gameCell" {
+            let gameVC = segue.destination as? GameViewController
+            
+        }
+    }
+    
+    
 }
 
+
+// MARK: - MainViewController
 // Настраиваем ширину ячеек
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(

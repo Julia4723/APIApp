@@ -25,13 +25,12 @@ final class ImageViewController: UIViewController {
         URLSession.shared.dataTask(with: Link.imageURL.url) { [weak self] data, response, error in
             guard let data, let response else {
                 print(error?.localizedDescription ?? "No error")
-                
                 return
             }
             
             print(response)
             
-            // Диспетчер очередей, благодаря ему вернулись в основной потоко
+            // Диспетчер очередей, благодаря ему вернулись в основной поток
             DispatchQueue.main.async {
                 self?.imageView.image = UIImage(data: data)
                 self?.activityIndicator.stopAnimating()
