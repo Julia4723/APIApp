@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 struct Something: Decodable {
     let latitude: String
     let longitude: String
@@ -45,3 +45,4 @@ struct Something: Decodable {
         
     }
 }
+*/

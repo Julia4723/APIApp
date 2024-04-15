@@ -22,20 +22,14 @@ final class ImageViewController: UIViewController {
     
     //Здесь создаем сетевой запрос
     private func fetchImage() {
-        URLSession.shared.dataTask(with: Link.imageURL.url) { [weak self] data, response, error in
-            guard let data, let response else {
-                print(error?.localizedDescription ?? "No error")
-                return
-            }
-            
-            print(response)
-            
-            // Диспетчер очередей, благодаря ему вернулись в основной поток
-            DispatchQueue.main.async {
-                self?.imageView.image = UIImage(data: data)
+        NetworkManager.shared.fetchImage(from: Link.imageURL.url) { [weak self] result in
+            switch result {
+            case .success(let imageData):
+                self?.imageView.image = UIImage(data: imageData)
                 self?.activityIndicator.stopAnimating()
+            case .failure(let error):
+                print(error)
             }
-            
-        }.resume()
+        }
     }
 }

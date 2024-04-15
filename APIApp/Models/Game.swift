@@ -9,18 +9,27 @@ import Foundation
 
 
 // MARK: - Game
-struct Game: Decodable {
+struct Game: Codable {
     let sentence: String
     let character: Character
 }
+    
+    
+    // MARK: - Character
+    struct Character: Codable {
+        let name, slug: String
+        let house: House
+    }
+    
+    // MARK: - House
+    struct House: Codable {
+        let name, slug: String
+    }
 
-// MARK: - Character
-struct Character: Decodable {
-    let name, slug: String
-    let house: House
-}
-  
-// MARK: - House
-struct House: Decodable {
-    let name, slug: String
-}
+
+
+/* Ручное сопоставление данных JSON
+ enum CodingKeys: String, CodingKey {
+ case sentence = "sentence"
+ }
+ } */

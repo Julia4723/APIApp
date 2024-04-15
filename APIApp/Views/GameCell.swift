@@ -13,10 +13,17 @@ final class GameCell : UITableViewCell {
     @IBOutlet var characterName: UILabel!
     @IBOutlet var houseName: UILabel!
     
-    func configure(with game: Game) {
+
+    func configure(game: Game) {
         sentenceGame.text = game.sentence
-        characterName.text = game.character.name
-        houseName.text = game.character.house.name
-    }
+        characterName.text = "Hero: \(game.character.name)"
+        houseName.text = "House: \(game.character.house.name)"
+        }
     
-}
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+
+    }
+
