@@ -11,27 +11,23 @@
 struct Game: Codable {
     let sentence: String
     var character: Character
-  
+    
     init(quoteData: [String: Any]) {
         sentence = quoteData["sentence"] as? String ?? ""
         
         let characterDict = quoteData["character"] as? [String: Any] ?? [:]
         character = Character(quoteData: characterDict)
-        
-        
     }
     
-
+    
     static func getQuotes(from jsonValue: Any) -> [Game] {
         guard let quoteData = jsonValue as? [[String: Any]] else { return []}
-        //guard let games = value as? [[String: Any]] else { return []}
-        //guard let characters = value as? [String: Any] else { return []}
         
-        return quoteData.map { Game(quoteData: $0)}
+        return quoteData.map { Game(quoteData: $0) }
+        
+        
     }
-    
 }
-        
     
     
     
