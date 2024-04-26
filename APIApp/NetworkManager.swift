@@ -8,6 +8,7 @@
 //Создаем синглтон для работы с сетью
 
 import Foundation
+import Alamofire
 
 enum NetworkError: Error {
     case invalidURL
@@ -17,9 +18,6 @@ enum NetworkError: Error {
 
 final class NetworkManager {
     static let shared = NetworkManager()
-    
-
-    
     
     //Метод для загрузки изображений
     // completion - убегающее замыкание
@@ -47,7 +45,6 @@ final class NetworkManager {
                 return
             }
             
-            
             do {
                 
                 let decoder = JSONDecoder()
@@ -66,6 +63,7 @@ final class NetworkManager {
         }.resume()
     }
  
+    
     
     func postRequest(with parameters: [String: Any], to url: URL, completion: @escaping(Result<Any, NetworkError>) -> Void) {
         
@@ -99,6 +97,10 @@ final class NetworkManager {
         
     }
     
+    
+    
+    
+    
     func postRequest(with parameters: Game, to url: URL, completion: @escaping(Result<Any, NetworkError>) -> Void) {
         
         guard let encodedJSON = try? JSONEncoder().encode(parameters) else {
@@ -119,7 +121,6 @@ final class NetworkManager {
                 return
                            
             }
-            
             do {
                 let game = try JSONDecoder().decode(Game.self, from: data)
                 completion(.success(game))
@@ -128,6 +129,26 @@ final class NetworkManager {
             }
         }.resume()
         
+    }
+    
+    
+    
+    
+    
+    
+    func fetchQuotes(from url: URL, completion: @escaping(Result<[Game],AFError>) -> Void){
+        AF.request(url)
+            .validate()
+            .responseJSON {dataResponse in
+                switch dataResponse.result {
+                case .success(let jsonValue):
+                    let games = Game.getQuotes(from: jsonValue)
+                    completion(.success(games))
+                    
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
     }
     
     private init() {}

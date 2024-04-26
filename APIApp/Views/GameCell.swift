@@ -22,7 +22,7 @@ final class GameCell : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        //contentView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }
 

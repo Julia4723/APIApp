@@ -20,6 +20,7 @@
 		CE1470CA2BC84DF300F6CEB3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1470C92BC84DF300F6CEB3 /* GameViewController.swift */; };
 		CE1470CC2BC8531C00F6CEB3 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1470CB2BC8531C00F6CEB3 /* GameCell.swift */; };
 		CE1470D12BC8F14200F6CEB3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1470D02BC8F14200F6CEB3 /* NetworkManager.swift */; };
+		CECD58732BD56937001DC86A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CECD58722BD56937001DC86A /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECD58732BD56937001DC86A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +130,9 @@
 			dependencies = (
 			);
 			name = APIApp;
+			packageProductDependencies = (
+				CECD58722BD56937001DC86A /* Alamofire */,
+			);
 			productName = APIApp;
 			productReference = CE1470922BC2AA8B00F6CEB3 /* APIApp.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +161,9 @@
 				Base,
 			);
 			mainGroup = CE1470892BC2AA8B00F6CEB3;
+			packageReferences = (
+				CECD58712BD56937001DC86A /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = CE1470932BC2AA8B00F6CEB3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -423,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CECD58712BD56937001DC86A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CECD58722BD56937001DC86A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CECD58712BD56937001DC86A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE14708A2BC2AA8B00F6CEB3 /* Project object */;
 }

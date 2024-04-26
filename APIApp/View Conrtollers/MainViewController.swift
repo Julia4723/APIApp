@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 
 enum Link {
@@ -28,25 +29,26 @@ enum Link {
 
 enum UserAction: CaseIterable {
     case showImage
-    case fetchQuotes
+    case fetchRandomQuotes
     case showQuotes
     case postRequestWithDict
-    case postRequestModel
+    //case postRequestModel
 
     
     var title: String {
         switch self {
         case .showImage:
             return "Show Image"
-        case .fetchQuotes:
+        case .fetchRandomQuotes:
             return "Quotes in console"
         case .showQuotes:
             return "Random Quotes"
         case .postRequestWithDict:
             return "POSR RQST with Dict"
+            /*
         case .postRequestModel:
             return "POSR RQST Model"
-
+*/
         }
     }
 }
@@ -104,10 +106,10 @@ final class MainViewController: UICollectionViewController {
         //теперь надо определить действие, которое необходимо выполнить
         switch userAction {
         case .showImage: performSegue(withIdentifier: "oneSegue", sender: nil)// переход на другой экран по сигвею
-        case .fetchQuotes: fetchQuotes()
+        case .fetchRandomQuotes: fetchRandomQuotes()
         case .showQuotes: performSegue(withIdentifier: "showQuotes", sender: nil) // переход на другой экран по сигвею
         case .postRequestWithDict: postRequestWithDict()
-        case .postRequestModel: postRequestModel()
+        //case .postRequestModel: postRequestModel()
 
         }
     }
@@ -116,7 +118,7 @@ final class MainViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showQuotes" {
             let gameVC = segue.destination as? GameViewController
-            gameVC?.fetchQuotes()
+            gameVC?.showQuotes()
         }
     }
         
@@ -157,8 +159,9 @@ final class MainViewController: UICollectionViewController {
     //MARK: - Networking
     // Эти методы будут вызываться по нажатию на кнопки
 extension MainViewController {
-    
-    private func fetchQuotes() {
+
+ //метод выводит рандомную цитату на консоль
+    private func fetchRandomQuotes() {
         networkManager.fetch(Game.self, from: Link.quotesURL.url) {[weak self] result in
             switch result {
                 
@@ -192,6 +195,8 @@ extension MainViewController {
         }
     }
     
+    
+   /*
     private func postRequestModel() {
         let game = Game(
             sentence: "Quotes",
@@ -216,5 +221,5 @@ extension MainViewController {
                     }
                 }
     }
-    
+    */
 }
