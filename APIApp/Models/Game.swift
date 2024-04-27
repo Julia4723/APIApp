@@ -18,12 +18,15 @@ struct Game: Codable {
         let characterDict = quoteData["character"] as? [String: Any] ?? [:]
         character = Character(quoteData: characterDict)
     }
+
     
     
-    static func getQuotes(from jsonValue: Any) -> [Game] {
-        guard let quoteData = jsonValue as? [[String: Any]] else { return []}
+    
+    static func getQuotes(from quoteData: Any) -> [Game] {
+        guard let quoteData = quoteData as? [String: Any] else { return [] }
+        guard let results = quoteData["quoteData"] as? [[String: Any]] else { return []}
         
-        return quoteData.map { Game(quoteData: $0) }
+        return results.map { Game(quoteData: $0) }
         
         
     }
