@@ -24,7 +24,7 @@ struct Game: Codable {
     
     static func getQuotes(from quoteData: Any) -> [Game] {
         guard let quoteData = quoteData as? [String: Any] else { return [] }
-        guard let results = quoteData["quoteData"] as? [[String: Any]] else { return []}
+        guard let results = quoteData["results"] as? [[String: Any]] else { return []}
         
         return results.map { Game(quoteData: $0) }
         
